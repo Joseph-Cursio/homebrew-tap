@@ -9,6 +9,8 @@ brew tap Joseph-Cursio/tap
 brew install swiftumlbridge
 ```
 
+> **macOS 26 note.** The formula builds from source via `swift build` and requires the Swift 6.2 toolchain that ships with Xcode 26+. If `brew install` reports a "Tier 2 configuration" warning, install the Command Line Tools matching your Xcode version (Xcode → Settings → Locations, or download from [developer.apple.com](https://developer.apple.com/download/all/)). The build will succeed without the CLT, but Homebrew prefers them.
+
 ## Usage
 
 ```bash
