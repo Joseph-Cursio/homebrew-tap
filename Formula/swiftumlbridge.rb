@@ -22,12 +22,19 @@ class Swiftumlbridge < Formula
              "--disable-sandbox",
              "--configuration", "release",
              "--product", "swiftumlbridge"
-      bin.install ".build/release/swiftumlbridge"
+      # SVG output reads graphre.js from this bundle, which SwiftPM looks for
+      # beside the executable, so the two have to stay in one directory.
+      libexec.install ".build/release/swiftumlbridge",
+                      ".build/release/SwiftUMLBridge_SwiftUMLBridgeFramework.bundle"
+      bin.write_exec_script libexec/"swiftumlbridge"
     end
   end
 
   test do
     assert_match "1.1.0", shell_output("#{bin}/swiftumlbridge --version")
     assert_match "swiftumlbridge", shell_output("#{bin}/swiftumlbridge --help")
+    (testpath/"Sample.swift").write "class Base {}\nclass Sub: Base {}\n"
+    svg = shell_output("#{bin}/swiftumlbridge classdiagram #{testpath} --format svg --output consoleOnly")
+    assert_match "<svg", svg
   end
 end
