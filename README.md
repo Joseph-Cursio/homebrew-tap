@@ -5,9 +5,10 @@ Homebrew tap for [SwiftUMLBridge](https://github.com/Joseph-Cursio/SwiftUMLStudi
 ## Installation
 
 ```bash
-brew tap Joseph-Cursio/tap
-brew install swiftumlbridge
+brew install Joseph-Cursio/tap/swiftumlbridge
 ```
+
+Use the full name the first time. It adds the tap and trusts the formula, and Homebrew 7 refuses a bare `brew install swiftumlbridge` from a tap it does not trust yet.
 
 > **macOS 26 note.** The formula builds from source via `swift build` and requires the Swift 6.2 toolchain that ships with Xcode 26+. If `brew install` reports a "Tier 2 configuration" warning, install the Command Line Tools matching your Xcode version (Xcode → Settings → Locations, or download from [developer.apple.com](https://developer.apple.com/download/all/)). The build will succeed without the CLT, but Homebrew prefers them.
 
@@ -26,7 +27,7 @@ See the [user guide](https://github.com/Joseph-Cursio/SwiftUMLStudio/blob/main/d
 `Formula/swiftumlbridge.rb` here is mirrored from `homebrew/Formula/swiftumlbridge.rb` in the upstream repository. To update for a new release:
 
 1. Cut and publish a new GitHub release on `Joseph-Cursio/SwiftUMLStudio`.
-2. Bump the `url`, `sha256`, and `--version` assertion in `Formula/swiftumlbridge.rb` here.
+2. Bump the `url`, `sha256`, and `--version` assertion in `Formula/swiftumlbridge.rb` upstream, and copy that file here.
 3. Commit and push — the tap is consumed live, no extra publish step.
 
 ## License
